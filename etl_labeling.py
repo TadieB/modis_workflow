@@ -32,9 +32,7 @@ def setup_logging(log_dir="./logs"):
 
 # ------------------ Configuration ------------------
 CONFIG = {
-    "fill_value": [-28672, 787410671],  # [reflectance int16, band quality uint32], 
-    # "cloudmask_fillvalue": 65535,         # no for MOD09GA
-    # "cloudmask_valid_range": (0, 57343),  # no for MOD09GA
+    "fill_value": [-28672, 787410671],  
     "valid_range": (-100, 16000),
     "scale_factor": 0.0001,
     "patch_size": 32,
@@ -70,7 +68,7 @@ def read_modis_data(hdf_path: str) -> dict:
         data_fields["quality"] = hdf.select("QC_500m_1").get().astype(np.uint32)
 
         # Read and process cloud mask.
-        csq = hdf.select("state_1km_1").get().astype(np.uint32)  # 1073741824, 32 bit unsigned int or positive, but userguide states 16bit unsigned, fillvalue 65535 which should be wrong.
+        csq = hdf.select("state_1km_1").get().astype(np.uint32) 
         cloud_state = csq & 0b11
         cloudy_mask = (cloud_state == 1)
         cloud_mask = cloudy_mask.astype(np.uint8)
