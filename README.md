@@ -15,7 +15,7 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Dependencies include: `numpy`, `xarray`, `pyhdf`, `netCDF4`, `rasterio`, `globus-compute-sdk`, `globus-compute-endpoint`.
+Dependencies include: `numpy`, `xarray`, `pyhdf`, `netCDF4`, `rasterio`, `parsl`, `globus-compute-sdk`, `globus-compute-endpoint`.
 
 ---
 
