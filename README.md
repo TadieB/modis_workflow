@@ -43,6 +43,7 @@ Adjust the config section in the scripts to change:
 * time window (years/dates)
 * region/tiles
 * metrics or labeling options
+* directories
 
 ---
 
