@@ -41,6 +41,8 @@ Adjust the config section in the scripts to change:
 
 * products (e.g., MOD09, MOD35\_L2, MOD03)
 * time window (years/dates)
+* spatial sizes
+* multispectral bands
 * region/tiles
 * metrics or labeling options
 * directories
