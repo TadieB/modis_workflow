@@ -37,7 +37,7 @@ CONFIG = {
     "scale_factor": 0.0001,
     "patch_size": 32,
     "required_bands": [1, 2, 3, 4, 5, 6, 7],
-    "cloud_threshold": 0.2 # originally cloudstate data = uint32; binary mask = uint8 /0 or 1/ processed
+    "cloud_threshold": 0.2 # originally cloudstate data = uint32; processed binary mask = uint8 /0 or 1/ 
 }
 
 # ------------------ Helper Functions ------------------
