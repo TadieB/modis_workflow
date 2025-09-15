@@ -1,5 +1,5 @@
 
-# Multispectral / Multitemporal Cloud-Gap Imputation — Data Pipeline
+# Multispectral - Multitemporal Cloud-Gap Imputation — Data Pipeline
 
 This repository builds a NetCDF dataset for cloud-gap imputation from multispectral and multitemporal satellite products.
 
