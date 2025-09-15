@@ -1,26 +1,48 @@
-# modis_workflow
 
+# Multispectral / Multitemporal Cloud-Gap Imputation — Data Pipeline
 
-## Workflow Overview
+This repository builds a NetCDF dataset for cloud-gap imputation from multispectral and multitemporal satellite products.
 
-This section documents the MODIS HDF4 ETL pipeline as implemented in `hdf_extract_clean_patchify_annotate_saveas_nc.py`. The workflow is as follows:
+---
 
-1. **Read Raw MODIS HDF4EOS Tiles**
-   - Each tile is 2400x2400 pixels at 500m resolution.
-   - 7 surface reflectance bands are extracted using `pyhdf`.
+## Install
 
-2. **Data Cleaning and Filtering**
-   - Apply cloud masks, band quality masks, fill value removal, and scaling.
-   - Cloud masks are extracted and resampled from 1200x1200 (1km) to match the 500m grid to align it with surfacereflectance.
+```bash
+# (optional) create venv
+python3 -m venv .venv && source .venv/bin/activate
 
-3. **Mosaicking**
-   - Cleaned tiles are mosaicked based on geolocation to form a 4800x4800 region (e.g., central Europe).
+# install dependencies
+pip install -r requirements.txt
+```
 
-4. **Patchification and Labeling**
-   - The mosaic is split into hxw spatial patches.
-   - Each patches are labeled as 'cloudy'and 'clearsky'
-   - Each patch is assigned a unique location ID and temporal stamp for downstream training and analysis.
+Dependencies include: `numpy`, `xarray`, `pyhdf`, `netCDF4`, `rasterio`, `globus-compute-sdk`, `globus-compute-endpoint`.
 
-5. **Saving Output**
-   - Each patch contains 7 reflectance bands, a cloud mask, and 10 temporal snapshots.
-   - Data is saved in NetCDF format with custom metadata for permanent storage.
+---
+
+## Workflow
+
+1. **Download data**
+
+   ```bash
+   python3 multispectral_multitemporal_downloader.py
+   ```
+2. **Run ETL + labeling**
+
+   ```bash
+   python3 etl_labeling.py
+   ```
+3. **Result**: NetCDF dataset with multispectral, multitemporal stacks labeled as *cloudy* or *clear-sky*.
+
+---
+
+## Configuration
+
+Adjust the config section in the scripts to change:
+
+* products (e.g., MOD09, MOD35\_L2, MOD03)
+* time window (years/dates)
+* region/tiles
+* metrics or labeling options
+
+---
+
