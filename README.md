@@ -49,3 +49,10 @@ Adjust the config section in the scripts to change:
 
 ---
 
+## To access already generated dataset
+
+```bash
+ssh <username>@baldo.disi.unitn.it:/home/tadiebirihan.medimem/data
+```
+
+---
